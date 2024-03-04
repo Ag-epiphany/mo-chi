@@ -1,3 +1,5 @@
+use `mo_chi`;
+
 drop table if exists `topic_post_mapper`;
 
 create table `topic_post_mapper`

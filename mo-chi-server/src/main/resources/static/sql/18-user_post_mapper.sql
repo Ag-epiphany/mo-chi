@@ -1,3 +1,5 @@
+use `mo_chi`;
+
 drop table if exists `user_post_mapper`;
 
 create table `user_post_mapper`

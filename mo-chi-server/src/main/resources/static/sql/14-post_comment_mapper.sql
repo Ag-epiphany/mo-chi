@@ -1,3 +1,5 @@
+use `mo_chi`;
+
 drop table if exists `post_comment_mapper`;
 
 create table `post_comment_mapper`

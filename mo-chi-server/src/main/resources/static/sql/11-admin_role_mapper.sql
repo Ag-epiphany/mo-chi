@@ -1,3 +1,5 @@
+use `mo_chi`;
+
 drop table if exists `admin_role_mapper`;
 
 create table `admin_role_mapper`

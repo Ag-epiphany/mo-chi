@@ -1,0 +1,46 @@
+version: '2.21'
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mo-chi-mysql0
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    volumes:
+      - mo-chi-mysql0-conf:/etc/mysql/conf.d
+      - mo-chi-mysql0-data:/var/lib/mysql
+      - mo-chi-mysql0-log:/var/log/mysql
+      - mo-chi-mysql0-initdb:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=112358liyin.
+      - TZ=Asia/Shanghai
+volumes:
+  mo-chi-mysql0-conf:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/mo-chi/mysql0/conf
+
+  mo-chi-mysql0-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/mo-chi/mysql0/data
+
+  mo-chi-mysql0-log:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/mo-chi/mysql0/log
+
+  mo-chi-mysql0-initdb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/mo-chi/mysql0/initdb
+
+

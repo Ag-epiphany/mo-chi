@@ -1,3 +1,5 @@
+use `mo_chi`;
+
 drop table if exists `topic`;
 
 create table `topic`

@@ -1,3 +1,5 @@
+use `mo_chi`;
+
 drop table if exists `note_tag_mapper`;
 
 create table `note_tag_mapper`

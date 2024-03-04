@@ -1,3 +1,5 @@
+use `mo_chi`;
+
 drop table if exists `comment_reply_mapper`;
 
 create table `comment_reply_mapper`
