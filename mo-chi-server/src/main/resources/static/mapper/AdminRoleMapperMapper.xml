@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.AdminRoleMapperMapper">
+    <sql id="allFields">
+        id,aid,rid
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        aid,rid
+    </sql>
+    <insert id="insert" parameterType="adminRoleMapper">
+        insert into admin_role_mapper
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{aid}, #{rid})
+    </insert>
+    <delete id="deleteById">
+        delete from admin_role_mapper
+        where id = #{id}
+    </delete>
+    <select id="selectById" resultType="com.darkblue.mo_chi_server.entity.AdminRoleMapper">
+        select <include refid="allFields"></include>
+        from admin_role_mapper
+        where id = #{id}
+    </select>
+    <select id="selectAll" resultType="com.darkblue.mo_chi_server.entity.AdminRoleMapper">
+        select <include refid="allFields"></include>
+        from admin_role_mapper
+    </select>
+    <select id="selectByAid" resultType="com.darkblue.mo_chi_server.entity.AdminRoleMapper">
+        select <include refid="allFields"></include>
+        from admin_role_mapper
+        where aid = #{aid}
+    </select>
+    <select id="selectByRid" resultType="com.darkblue.mo_chi_server.entity.AdminRoleMapper">
+        select
+        <include refid="allFields"></include>
+        from admin_role_mapper
+        where rid = #{rid}
+    </select>
+
+</mapper>

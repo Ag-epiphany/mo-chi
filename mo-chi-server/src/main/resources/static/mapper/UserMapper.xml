@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.UserMapper">
+    <sql id="allFields">
+        uid,user_name,password,sex,email,created_datetime,motto,point
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        user_name,password,sex,email,created_datetime,motto,point
+    </sql>
+    <insert id="insert" parameterType="user">
+        insert into user
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{userName}, #{password},#{sex}, #{createdDatetime},#{motto},#{point})
+    </insert>
+    <delete id="deleteByUid">
+        delete
+        from user
+        where uid = #{uid}
+    </delete>
+    <select id="selectByUid" resultType="com.darkblue.mo_chi_server.entity.User">
+        select
+        <include refid="allFields"></include>
+        from user
+        where uid=#{uid}
+    </select>
+    <select id="selectByUserName" resultType="com.darkblue.mo_chi_server.entity.User">
+        select
+        <include refid="allFields"></include>
+        from user
+        where user_name = #{user_name}
+    </select>
+    <select id="selectByEmail" resultType="com.darkblue.mo_chi_server.entity.User">
+        select
+        <include refid="allFields"></include>
+        from user
+        where email = #{email}
+    </select>
+    <select id="selectByCreatedDatetimeRange" resultType="com.darkblue.mo_chi_server.entity.User">
+        select
+        <include refid="allFields"></include>
+        from user
+        where created_datetime between #{start} and #{end}
+    </select>
+    <select id="selectBySex" resultType="com.darkblue.mo_chi_server.entity.User">
+        select
+        <include refid="allFields"></include>
+        from user
+        where sex = #{sex}
+    </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.PostMapper">
+    <sql id="allFields">
+        pid,title,content_url,created_datetime,updated_datetime,visited_count,type
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        title,content_url,created_datetime,updated_datetime,visited_count,type
+    </sql>
+    <insert id="insert" parameterType="post">
+        insert into post
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{title}, #{contentUrl},#{createdDatetime}, #{updatedDatetime},#{visitedCount},#{type})
+    </insert>
+    <delete id="deleteByPid">
+        delete
+        from post
+        where pid = #{pid}
+    </delete>
+    <select id="selectByPid" resultType="com.darkblue.mo_chi_server.entity.Post">
+        select
+        <include refid="allFields"></include>
+        from post
+        where pid = #{pid}
+    </select>
+    <select id="selectByCreateDatetimeRange" resultType="com.darkblue.mo_chi_server.entity.Post">
+        select
+        <include refid="allFields"></include>
+        from post
+        where created_datetime between #{start} and #{end}
+    </select>
+    <select id="selectByVisitedCountRange" resultType="com.darkblue.mo_chi_server.entity.Post">
+        select
+        <include refid="allFields"></include>
+        from post
+        where visited_count between #{min} and #{max}
+    </select>
+    <select id="selectByType" resultType="com.darkblue.mo_chi_server.entity.Post">
+        select
+        <include refid="allFields"></include>
+        from post
+        where type = #{type}
+    </select>
+</mapper>

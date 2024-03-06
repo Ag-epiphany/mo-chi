@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.">
+    <sql id="allFields">
+
+    </sql>
+    <sql id="allFields_except_primaryKey">
+
+    </sql>
+    insert into
+    (<include refid="allFields_except_primaryKey"></include>)
+    values (#{}, #{},#{}, #{},#{})
+
+    delete from
+    where  = #{}
+</mapper>

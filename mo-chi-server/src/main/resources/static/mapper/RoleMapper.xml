@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.RoleMapper">
+    <sql id="allFields">
+        rid,name,assigned_count
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        name,assigned_count
+    </sql>
+    <insert id="insert" parameterType="role">
+        insert into role
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{name}, #{assignedCount})
+    </insert>
+    <delete id="deleteByRid">
+        delete
+        from role
+        where rid = #{rid}
+    </delete>
+    <select id="selectByRid" resultType="com.darkblue.mo_chi_server.entity.Role">
+        select <include refid="allFields"></include>
+            from role
+        where rid = #{rid}
+    </select>
+    <select id="selectAll" resultType="com.darkblue.mo_chi_server.entity.Role">
+        select
+        <include refid="allFields"></include>
+        from role
+    </select>
+
+</mapper>
