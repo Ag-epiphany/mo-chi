@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.darkblue.mo_chi_server.mapper.AdminMapper">
+    <sql id="allFields">
+        aid, created_datetime,valid_until,granted_by,revoked_by
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        created_datetime,valid_until,granted_by,revoked_by
+    </sql>
+    <delete id="deleteByAid">
+        delete from admin
+        where aid = #{aid}
+    </delete>
+    <select id="selectByAid" resultType="Admin">
+        select
+        <include refid="allFields"></include>
+        from admin
+        where aid=#{aid}
+    </select>
+    <select id="selectAll" resultType="Admin">
+        select
+        <include refid="allFields"></include>
+        from admin
+    </select>
+    <select id="selectByGrantedBy" resultType="Admin">
+        select
+        <include refid="allFields"></include>
+        from admin
+        where granted_by = #{granted_by}
+    </select>
+    <select id="selectByRevokedBy" resultType="Admin">
+        select
+        <include refid="allFields"></include>
+        from admin
+        where revoked_by = #{revoked_by}
+    </select>
+    <insert id="insert" parameterType="admin">
+        insert into admin
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{createdDatetime},#{validUntil}, #{grantedBy},#{revokedBy})
+    </insert>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.CommentMapper">
+    <sql id="allFields">
+        cid,content_url,created_datetime
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        content_url,created_datetime
+    </sql>
+    <insert id="insert" parameterType="comment">
+        insert into comment
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{contentUrl}, #{createdDatetime})
+    </insert>
+    <delete id="deleteByCid">
+        delete from comment
+        where cid = #{cid}
+    </delete>
+    <select id="selectByCid" resultType="com.darkblue.mo_chi_server.entity.Comment">
+        select
+        <include refid="allFields"></include>
+        from comment
+        where cid = #{cid}
+    </select>
+    <select id="selectAll" resultType="com.darkblue.mo_chi_server.entity.Comment">
+        select
+        <include refid="allFields"></include>
+        from comment
+    </select>
+    <select id="selectByAscCreatedDatetime" resultType="com.darkblue.mo_chi_server.entity.Comment">
+        select
+        <include refid="allFields"></include>
+        from comment
+        order by created_datetime
+    </select>
+    <select id="selectByDescCreatedDatetime" resultType="com.darkblue.mo_chi_server.entity.Comment">
+        select
+        <include refid="allFields"></include>
+        from comment
+        order by created_datetime desc
+    </select>
+    <select id="selectByCreatedDatetimeRange" resultType="com.darkblue.mo_chi_server.entity.Comment">
+        select
+        <include refid="allFields"></include>
+        from comment
+        where created_datetime between #{start} and #{end}
+        order by created_datetime
+    </select>
+</mapper>

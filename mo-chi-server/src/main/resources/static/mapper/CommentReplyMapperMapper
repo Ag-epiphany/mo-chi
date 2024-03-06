@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.CommentReplyMapperMapper">
+    <sql id="allFields">
+        rid,cid
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        cid
+    </sql>
+    <insert id="insert" parameterType="commentReplyMapper">
+        insert into comment_reply_mapper
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{cid})
+    </insert>
+    <delete id="deleteByRid">
+        delete from comment_reply_mapper
+        where rid = #{rid}
+    </delete>
+    <select id="selectByRid" resultType="com.darkblue.mo_chi_server.entity.CommentReplyMapper">
+        select
+        <include refid="allFields"></include>
+        from comment_reply_mapper
+        where rid = #{rid}
+    </select>
+    <select id="selectByCid" resultType="com.darkblue.mo_chi_server.entity.CommentReplyMapper">
+        select
+        <include refid="allFields"></include>
+        from comment_reply_mapper
+        where cid = #{cid}
+    </select>
+</mapper>

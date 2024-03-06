@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.TopicMapper">
+    <sql id="allFields">
+        tid,decription,name,article_count,inquiry_count
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        decription,name,article_count,inquiry_count
+    </sql>
+    <insert id="insert" parameterType="topic">
+        insert into topic
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{description}, #{name},#{articleCount}, #{inquiryCount})
+    </insert>
+    <delete id="deleteByTid">
+        delete
+        from topic
+        where tid = #{tid}
+    </delete>
+    <select id="selectByTid" resultType="com.darkblue.mo_chi_server.entity.Topic">
+        select
+        <include refid="allFields"></include>
+        from topic
+        where tid = #{tid}
+    </select>
+    <select id="selectByName" resultType="com.darkblue.mo_chi_server.entity.Topic">
+        select
+        <include refid="allFields"></include>
+        from topic
+        where name = #{name}
+    </select>
+    <select id="selectByArticleCountRange" resultType="com.darkblue.mo_chi_server.entity.Topic">
+        select
+        <include refid="allFields"></include>
+        from topic
+        where article_count between #{min} and #{max}
+    </select>
+    <select id="selectByInquiryCountRange" resultType="com.darkblue.mo_chi_server.entity.Topic">
+        select
+        <include refid="allFields"></include>
+        from topic
+        where inquiry_count between #{min} and #{max}
+    </select>
+</mapper>

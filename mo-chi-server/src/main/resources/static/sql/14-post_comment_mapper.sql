@@ -4,9 +4,9 @@ drop table if exists `post_comment_mapper`;
 
 create table `post_comment_mapper`
 (
-    `pid` INT NOT NULL AUTO_INCREMENT,
-    `cid` INT NOT NULL,
-    primary key (`pid`),
-    INDEX (`cid`)
+    `cid` INT NOT NULL AUTO_INCREMENT,
+    `pid` INT NOT NULL,
+    primary key (`cid`),
+    INDEX (`pid`)
 ) ENGINE = InnoDB
   CHARSET = utf8mb4

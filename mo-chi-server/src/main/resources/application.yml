@@ -1,0 +1,46 @@
+# server
+server:
+  port: 8082
+---
+# MySQL : mo-chi-mysql0
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.67.200.135:3306/mo_chi?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: 112358liyin.
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计。stat:监控统计 log4:日志记录 wall:防御sql注入
+      # 如果运行时报错：ClassNotFoundException:orgapache.log4j.Priority，则导入log4j依赖即可
+      filters: stat,wall,log4j
+
+---
+# MyBatis 以及 Mybatis分页插件
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  # 开启驼峰和下划线命名映射
+  type-aliases-package: com.darkblue.mo_chi_server.entity
+  mapper-locations: classpath:mapper/*.xml
+
+pagehelper:
+  helper-dialect: mysql
+  page-size-zero: true
+  reasonable: true
+  support-methods-arguments: true
+  row-bounds-with-count: true
+

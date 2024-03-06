@@ -4,9 +4,9 @@ drop table if exists `user_post_mapper`;
 
 create table `user_post_mapper`
 (
-    `uid` INT NOT NULL AUTO_INCREMENT,
-    `pid` INT NOT NULL,
-    primary key (`uid`),
-    INDEX (`pid`)
+    `pid` INT NOT NULL AUTO_INCREMENT,
+    `uid` INT NOT NULL,
+    primary key (`pid`),
+    INDEX (`uid`)
 ) ENGINE = InnoDB
   CHARSET = utf8mb4

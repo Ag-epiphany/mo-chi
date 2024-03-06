@@ -4,9 +4,11 @@ drop table if exists `admin_role_mapper`;
 
 create table `admin_role_mapper`
 (
-    `aid` INT NOT NULL AUTO_INCREMENT,
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `aid` INT NOT NULL,
     `rid` INT NOT NULL,
-    primary key (`aid`),
-    INDEX (`rid`)
+    primary key (`id`),
+    INDEX (`rid`),
+    INDEX (`aid`)
 ) ENGINE = InnoDB
   CHARSET = utf8mb4

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.PostCommentMapperMapper">
+    <sql id="allFields">
+        cid,pid
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        pid
+    </sql>
+    <insert id="insert" parameterType="postCommentMapper">
+        insert into post_comment_mapper
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{pid})
+    </insert>
+    <delete id="deleteByCid">
+        delete
+        from post_comment_mapper
+        where cid = #{cid}
+    </delete>
+    <select id="selectByCid" resultType="com.darkblue.mo_chi_server.entity.PostCommentMapper">
+        select <include refid="allFields"></include>
+        from post_comment_mapper
+        where cid = #{cid}
+    </select>
+    <select id="selectByPid" resultType="com.darkblue.mo_chi_server.entity.PostCommentMapper">
+        select <include refid="allFields"></include>
+        from post_comment_mapper
+        where pid = #{pid}
+    </select>
+
+</mapper>

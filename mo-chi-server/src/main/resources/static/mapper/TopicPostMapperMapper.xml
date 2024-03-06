@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.darkblue.mo_chi_server.mapper.TopicPostMapperMapper">
+    <sql id="allFields">
+        pid,tid
+    </sql>
+    <sql id="allFields_except_primaryKey">
+        tid
+    </sql>
+    <insert id="insert" parameterType="topicPostMapper">
+        insert into topic_post_mapper
+        (<include refid="allFields_except_primaryKey"></include>)
+        values (#{tid})
+    </insert>
+    <delete id="deleteByPid">
+        delete from topic_post_mapper
+            where pid = #{pid}
+    </delete>
+    <select id="selectByPid" resultType="com.darkblue.mo_chi_server.entity.TopicPostMapper">
+        select <include refid="allFields"></include>
+        from topic_post_mapper
+        where pid = #{pid}
+    </select>
+    <select id="selectByTid" resultType="com.darkblue.mo_chi_server.entity.TopicPostMapper">
+        select
+        <include refid="allFields"></include>
+        from topic_post_mapper
+        where tid = #{tid}
+    </select>
+
+</mapper>

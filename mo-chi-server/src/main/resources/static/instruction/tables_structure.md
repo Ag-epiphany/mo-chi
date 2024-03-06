@@ -108,13 +108,18 @@
 ## 10. admin_role_mapper
 
 > 映射管理员到所拥有的角色上。
+>
+> aid和rid多对多。
 
 | 字段 | 类型 | 更多说明 |
 | :--: | :--: | :------: |
-| aid  | INT  |   主键   |
+|  id  | INT  |   主键   |
+| aid  | INT  | 二级索引 |
 | rid  | INT  | 二级索引 |
 
 ## 11. user_admin_mapper
+
+> 一对一。
 
 | 字段 | 类型 | 更多说明 |
 | :--: | :--: | :------: |
@@ -124,49 +129,62 @@
 ## 12. user_post_mapper
 
 > 发布者和帖子关联起来。
-
-| 字段 | 类型 | 更多说明 |
-| :--: | :--: | :------: |
-| uid  | INT  |   主键   |
-| pid  | INT  | 二级索引 |
-
-## 13. user_comment_mapper
-
-> 记录评论的发布者和评论间的关联。
-
-| 字段 | 类型 | 更多说明 |
-| :--: | :--: | :------: |
-| uid  | INT  |   主键   |
-| cid  | INT  | 二级索引 |
-
-## 14. post_comment_mapper
-
-> 建立帖子和评论间的关联。
+>
+> user和post是一对多。
 
 | 字段 | 类型 | 更多说明 |
 | :--: | :--: | :------: |
 | pid  | INT  |   主键   |
-| cid  | INT  | 二级索引 |
+| uid  | INT  | 二级索引 |
 
-## 15. comment_reply_mapper
+## 13. user_comment_mapper
 
-> 建立评论和其下回复的关联。
+> 记录评论的发布者和评论间的关联。
+>
+> user和comment一对多。
 
 | 字段 | 类型 | 更多说明 |
 | :--: | :--: | :------: |
 | cid  | INT  |   主键   |
-| rid  | INT  | 二级索引 |
+| uid  | INT  | 二级索引 |
 
-## 16. note_tag_mapper
+## 14. post_comment_mapper
+
+> 建立帖子和评论间的关联。
+>
+> post和comment一对多。
 
 | 字段 | 类型 | 更多说明 |
 | :--: | :--: | :------: |
-| nid  | INT  |   主键   |
+| cid  | INT  |   主键   |
+| pid  | INT  | 二级索引 |
+
+## 15. comment_reply_mapper
+
+> 建立评论和其下回复的关联。
+>
+> comment和reply一对多。
+
+| 字段 | 类型 | 更多说明 |
+| :--: | :--: | :------: |
+| rid  | INT  |   主键   |
+| cid  | INT  | 二级索引 |
+
+## 16. note_tag_mapper
+
+> note和tag多对多。
+
+| 字段 | 类型 | 更多说明 |
+| :--: | :--: | :------: |
+|  id  | INT  |   主键   |
+| nid  | INT  | 二级索引 |
 | tid  | INT  | 二级索引 |
 
 ## 17. topic_post_mapper
 
+> topic和post一对多。
+
 | 字段 | 类型 | 更多说明 |
 | :--: | :--: | :------: |
-| tid  | INT  |   主键   |
-| pid  | INT  | 二级索引 |
+| pid  | INT  |   主键   |
+| tid  | INT  | 二级索引 |
